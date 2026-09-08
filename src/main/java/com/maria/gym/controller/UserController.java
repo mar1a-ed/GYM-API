@@ -4,6 +4,7 @@ import com.maria.gym.dto.UserCreateDTO;
 import com.maria.gym.dto.UserMapper;
 import com.maria.gym.dto.UserResponseDTO;
 import com.maria.gym.dto.UserUpdateDTO;
+import com.maria.gym.model.Credential;
 import com.maria.gym.model.User;
 import com.maria.gym.service.UserService;
 import jakarta.validation.Valid;
