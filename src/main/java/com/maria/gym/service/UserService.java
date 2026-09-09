@@ -3,6 +3,7 @@ package com.maria.gym.service;
 import com.maria.gym.dto.UserCreateDTO;
 import com.maria.gym.dto.UserUpdateDTO;
 import com.maria.gym.dto.UserUpdatePasswordDTO;
+import com.maria.gym.exception.EmailAlreadyExistsException;
 import com.maria.gym.exception.ResourceNotFoundException;
 import com.maria.gym.model.Role;
 import com.maria.gym.model.User;
@@ -54,7 +55,7 @@ public class UserService {
         }
 
         if(userRepository.existsByEmail(userCreateDTO.getEmail())){
-            throw new IllegalArgumentException("Email already exists.");
+            throw new EmailAlreadyExistsException("Email already exists.");
         }
 
         userRepository.save(user);
