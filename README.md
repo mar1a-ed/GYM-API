@@ -4,6 +4,7 @@
 - Spring Boot
   - Spring Web MVC
   - Spring Data JPA
+  - Spring Security
 - HATEOAS
   - Links de Hipermídia
 - PostgreSQL
