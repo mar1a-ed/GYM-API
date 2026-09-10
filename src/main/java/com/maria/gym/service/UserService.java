@@ -10,6 +10,8 @@ import com.maria.gym.model.User;
 import com.maria.gym.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -20,6 +22,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Transactional
     public User findById(Long id){
@@ -46,7 +51,7 @@ public class UserService {
         User user = new User();
 
         user.setEmail(userCreateDTO.getEmail());
-        user.setPassword(userCreateDTO.getPassword());
+        user.setPassword(passwordEncoder.encode(userCreateDTO.getPassword()));
 
         if(userCreateDTO.getRole() == null){
             user.setRole(Role.ROLE_CLIENT);
@@ -78,7 +83,7 @@ public class UserService {
         if(data.getCurrentPassword() == null && data.getNewPassword() == null){
             user.setPassword(user.getPassword());
         }else{
-            user.setPassword(updatePassword(id, new UserUpdatePasswordDTO(data.getCurrentPassword(), data.getNewPassword())));
+            user.setPassword(passwordEncoder.encode(updatePassword(id, new UserUpdatePasswordDTO(data.getCurrentPassword(), data.getNewPassword()))));
         }
 
         if(data.getRole() == null){

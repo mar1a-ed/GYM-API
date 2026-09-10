@@ -4,17 +4,14 @@ import com.maria.gym.dto.UserCreateDTO;
 import com.maria.gym.dto.UserMapper;
 import com.maria.gym.dto.UserResponseDTO;
 import com.maria.gym.dto.UserUpdateDTO;
-import com.maria.gym.model.Credential;
 import com.maria.gym.model.User;
 import com.maria.gym.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +19,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/public/users")
 public class UserController {
 
     @Autowired
